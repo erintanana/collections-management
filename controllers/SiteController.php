@@ -100,4 +100,9 @@ class SiteController extends Controller
     {
         return $this->render('profile');
     }
+
+    public function actionAdmin()
+    {
+        return $this->render('admin');
+    }
 }

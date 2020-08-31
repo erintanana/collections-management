@@ -40,6 +40,7 @@ AppAsset::register($this);
         'items' => [
             ['label' => 'Главная', 'url' => ['/site/index']],
             ['label' => 'Профиль', 'url' => ['/site/profile']],
+            ['label' => 'Панель администратора', 'url' => ['/site/admin']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Войти', 'url' => ['/site/login']]
             ) : (
