@@ -9,6 +9,7 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use \app\models\User;
 
 class SiteController extends Controller
 {
@@ -96,9 +97,16 @@ class SiteController extends Controller
         ]);
     }
 
-    public function actionProfile()
+    public function actionProfile($id = null)
     {
-        return $this->render('profile');
+        if (!is_null($id)) {
+            $model = User::findOne($id);
+            return $this->render('profile', [
+                'model' => $model,
+            ]);
+        } else {
+            return $this->render('profile');
+        }
     }
 
     public function actionAdmin()

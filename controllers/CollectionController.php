@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Item;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -50,6 +51,15 @@ class CollectionController extends Controller
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
         ];
+    }
+
+    public function actionCollection()
+    {
+//        if (!is_null($id)) {
+            $items = Item::find()->all();
+            return $this->render("collection", ['model' => $items]);
+//        }
+//        return $this->render("collection");
     }
 
 

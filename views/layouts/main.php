@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this \yii\web\View */
+
 /* @var $content string */
 
 use app\widgets\Alert;
@@ -27,37 +28,45 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <?php
-    NavBar::begin([
-        'brandLabel' => "Коллекции",
-        'brandUrl' => Yii::$app->homeUrl,
-        'options' => [
-            'class' => 'navbar navbar-expand-md navbar-light bg-light',
-        ],
-    ]);
-    echo Nav::widget([
-        'options' => ['class' => 'nav navbar-nav'],
-        'items' => [
-            ['label' => 'Главная', 'url' => ['/site/index']],
-            ['label' => 'Профиль', 'url' => ['/site/profile']],
-            ['label' => 'Панель администратора', 'url' => ['/site/admin']],
-            Yii::$app->user->isGuest ? (
-                ['label' => 'Войти', 'url' => ['/site/login']]
-            ) : (
-                '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
-                . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->username . ')',
-                    ['class' => 'btn btn-link logout']
-                )
-                . Html::endForm()
-                . '</li>'
-            )
-        ],
-    ]);
-    NavBar::end();
-    ?>
+    <div class="container align-items-end">
+        <?php
+        NavBar::begin([
+            'brandLabel' => "Коллекции",
+            'brandUrl' => Yii::$app->homeUrl,
+            'options' => [
+                'class' => 'navbar navbar-expand-md navbar-light bg-light',
+            ],
+        ]);
+        ?>
+        <div class="justify-content-end">
+            <?php
+            echo Nav::widget([
+                'options' => ['class' => 'navbar-nav'],
+                'items' => [
+                    ['label' => 'Главная', 'url' => ['/site/index']],
+                    ['label' => 'Профиль', 'url' => ['/site/profile']],
+                    ['label' => 'Панель администратора', 'url' => ['/site/admin']],
+                    Yii::$app->user->isGuest ? (
+                    ['label' => 'Войти', 'url' => ['/site/login']]
+                    ) : (
+                        '<li>'
+                        . Html::beginForm(['/site/logout'], 'post')
+                        . Html::submitButton(
+                            'Logout (' . Yii::$app->user->identity->username . ')',
+                            ['class' => 'btn btn-link logout']
+                        )
+                        . Html::endForm()
+                        . '</li>'
+                    )
+                ],
+            ]);
+            ?>
+        </div>
+        <?php
+        NavBar::end();
+        ?>
 
+    </div>
     <div class="container">
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
