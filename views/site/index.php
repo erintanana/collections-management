@@ -15,7 +15,11 @@ $this->title = 'Collections Management';
 
 <div class="row">
     <?php
-    $collections = Collection::find()->with('user')->all();
+    $collections = Collection::find()
+        ->with('user')
+        ->limit(3)
+        ->orderBy('created desc')
+        ->all();
     foreach ($collections as $collection) {
         echo "<div class='col-md'>
                         <div class='card'>";

@@ -1,22 +1,45 @@
 <?php
 
 /* @var $this yii\web\View */
-
+/* @var $form yii\bootstrap4\ActiveForm */
 /* @var $model  \app\models\User */
 
 use yii\helpers\Html;
+use yii\bootstrap4\ActiveForm;
 
 $this->title = 'Профиль';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
     <h1><?= Html::encode($this->title) ?></h1>
-    <h5><?= $model->login ?></h5>
-    <h5><?= $model->nickname ?></h5>
-    <h5><?= $model->email ?></h5>
-    <h5><?= $model->site_language ?></h5>
-    <h5><?= $model->site_theme ?></h5>
-    <h5><?= $model->person->name ?></h5>
-    <h5><?= $model->person->surname ?></h5>
-    <h5><?= $model->person->date_of_birth ?></h5>
+
+    <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+
+    <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?>
+
+    <?= $form->field($model, 'email') ?>
+
+    <?= $form->field($model, 'nickname') ?>
+
+    <?= $form->field($model->person, 'name') ?>
+
+    <?= $form->field($model->person, 'surname') ?>
+
+    <?= $form->field($model->person, 'date_of_birth') ?>
+
+    <?= $form->field($model, 'site_theme') ?>
+
+    <?= $form->field($model, 'site_language') ?>
+
+<!--    --><?//= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
+<!---->
+<!--    --><?//= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+//        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
+//    ]) ?>
+
+<!--    <div class="form-group">-->
+<!--        --><?//= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+<!--    </div>-->
+
+    <?php ActiveForm::end(); ?>
 </div>
