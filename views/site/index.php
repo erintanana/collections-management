@@ -2,6 +2,8 @@
 
 /* @var $this yii\web\View */
 
+use yii\helpers\Html;
+use yii\helpers\Url;
 use \app\models\Collection;
 
 $this->title = 'Collections Management';
@@ -23,7 +25,11 @@ $this->title = 'Collections Management';
     foreach ($collections as $collection) {
         echo "<div class='col-md'>
                         <div class='card'>";
-        echo "<h5 class='card-header'> <a href='?r=collection/collection'>{$collection->title}</a> </h5>" .
+        echo "<h5 class='card-header'>";
+        ?>
+        <?= Html::a($collection->title, Url::to(['site/collection', 'id' => $collection->id]), ['data-method' => 'POST']); ?>
+        <?php
+        echo "</h5>" .
             "<div class='card-body'>" .
             "<h6 class='card-title'>Тема: {$collection->topic}</h6>" .
             "<p class='card-text'> $collection->description </p>" .

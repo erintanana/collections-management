@@ -25,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 <th>Name</th>
                 <th>Surname</th>
                 <th>DOB</th>
+                <th></th>
             </tr>";
     foreach ($users as $user) {
         $person = $user->person;
@@ -40,10 +41,11 @@ $this->params['breadcrumbs'][] = $this->title;
             "<td> $user->created </td>" .
             "<td> $person->name </td>" .
             "<td> $person->surname </td>" .
-            "<td> $person->date_of_birth </td>";
+            "<td> $person->date_of_birth </td>" .
+            "<td> <button class='btn'><span class='close'>&times;</span></button> </td>";
         echo "</tr>";
     }
+
     echo "</table>";
     ?>
-
 </div>

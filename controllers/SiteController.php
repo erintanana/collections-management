@@ -2,6 +2,8 @@
 
 namespace app\controllers;
 
+use app\models\Collection;
+use app\models\Item;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -112,5 +114,15 @@ class SiteController extends Controller
     public function actionAdmin()
     {
         return $this->render('admin');
+    }
+
+    public function actionCollection($id = null)
+    {
+        if (!is_null($id)) {
+            $collection = Collection::findOne($id);
+            $items = $collection->getitems()->all();
+            return $this->render("collection", ['model' => $items]);
+        }
+        return $this->render("collection");
     }
 }

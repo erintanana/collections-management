@@ -53,14 +53,6 @@ class CollectionController extends Controller
         ];
     }
 
-    public function actionCollection()
-    {
-//        if (!is_null($id)) {
-            $items = Item::find()->all();
-            return $this->render("collection", ['model' => $items]);
-//        }
-//        return $this->render("collection");
-    }
 
 
 }
