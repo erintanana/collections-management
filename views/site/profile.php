@@ -15,9 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1>
         <?= Html::encode($model->login) ?>
 
-        <?= Html::a('Настройки', Url::to(
-            ['site/settings', 'id' => $model->id]),
-            ['data-method' => 'POST', 'class' => 'btn btn-outline-primary']); ?>
+        <?php if ($model->id == Yii::$app->user->id): ?>
+            <?= Html::a('Настройки', Url::to(
+                ['site/settings', 'id' => $model->id]),
+                ['data-method' => 'POST', 'class' => 'btn btn-outline-primary']); ?>
+        <?php endif; ?>
 
         <?= Html::a('Заблокировать', Url::to(
             ['site/collection', 'id' => 1]),
@@ -50,7 +52,9 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
     <div class="form-group">
-        <?= Html::button('Добавить коллекцию', ['class' => 'btn btn-primary', 'name' => 'add-collection-button']) ?>
+        <?php if ($model->id == Yii::$app->user->id): ?>
+            <?= Html::button('Добавить коллекцию', ['class' => 'btn btn-primary', 'name' => 'add-collection-button']) ?>
+        <?php endif; ?>
     </div>
 
 </div>
