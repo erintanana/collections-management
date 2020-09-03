@@ -29,7 +29,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 
 <div class="wrap">
-    <div class="container align-items-end">
+    <div class="align-items-end">
         <?php
         NavBar::begin([
             'brandLabel' => "Коллекции",
