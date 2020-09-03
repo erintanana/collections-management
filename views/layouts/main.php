@@ -44,7 +44,7 @@ AppAsset::register($this);
                 'options' => ['class' => 'navbar-nav'],
                 'items' => [
                     ['label' => 'Главная', 'url' => ['/site/index']],
-                    ['label' => 'Профиль', 'url' => ['/site/profile']],
+//                    ['label' => 'Профиль', 'url' => ['/site/profile']],
                     ['label' => 'Панель администратора', 'url' => ['/site/admin']],
                     Yii::$app->user->isGuest ? (
                     ['label' => 'Войти', 'url' => ['/site/login']]

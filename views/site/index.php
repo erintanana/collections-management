@@ -25,7 +25,7 @@ $this->title = 'Collections Management';
     foreach ($collections as $collection) {
         echo "<div class='col-md'>
                         <div class='card'>";
-        echo "<h5 class='card-header'>";
+        echo "<h5 class='card-header text-center'>";
         ?>
         <?= Html::a($collection->title, Url::to(['site/collection', 'id' => $collection->id]), ['data-method' => 'POST']); ?>
         <?php
@@ -33,7 +33,11 @@ $this->title = 'Collections Management';
             "<div class='card-body'>" .
             "<h6 class='card-title'>Тема: {$collection->topic}</h6>" .
             "<p class='card-text'> $collection->description </p>" .
-            "<h6>Автор: <a href='?r=site/profile'>{$collection->user->login}</a></h6>" .
+            "<h6>Автор:";
+        ?>
+        <?= Html::a($collection->user->login, Url::to(['site/profile', 'id' => $collection->user->id]), ['data-method' => 'POST']); ?>
+        <?php
+        echo "</h6>" .
             "</div>";
         echo "<div class='card-footer justify-content-between'>
                         <p class='text-right'>{$collection->created}</p>
