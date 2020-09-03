@@ -40,7 +40,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 "<div class='card-body'>" .
                 "<h6 class='card-title'>Тема: {$collection->topic}</h6>" .
                 "<p class='card-text'> $collection->description </p>" .
-                "<h6>Автор: <a href='?r=site/profile'>{$collection->user->login}</a></h6>" .
                 "</div>";
             echo "<div class='card-footer justify-content-between'>
                         <p class='text-right'>{$collection->created}</p>

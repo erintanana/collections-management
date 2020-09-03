@@ -15,6 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-contact">
     <h1>
         <?= Html::encode($model->login) ?>
+        <?= Html::submitButton('Сохранить', ['class' => 'btn btn-outline-primary', 'name' => 'save-button']) ?>
     </h1>
 
     <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
