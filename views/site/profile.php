@@ -7,44 +7,22 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-use yii\bootstrap4\ActiveForm;
 
 $this->title = 'Профиль';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
+    <h1>
+        <?= Html::encode($model->login) ?>
 
-    <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+        <?= Html::a('Настройки', Url::to(
+            ['site/settings', 'id' => $model->id]),
+            ['data-method' => 'POST', 'class' => 'btn btn-outline-primary']); ?>
 
-    <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?>
-
-    <?= $form->field($model, 'email') ?>
-
-    <?= $form->field($model, 'nickname') ?>
-
-    <?= $form->field($model->person, 'name') ?>
-
-    <?= $form->field($model->person, 'surname') ?>
-
-    <?= $form->field($model->person, 'date_of_birth') ?>
-
-    <?= $form->field($model, 'site_theme') ?>
-
-    <?= $form->field($model, 'site_language') ?>
-
-    <!--    --><? //= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
-    <!---->
-    <!--    --><? //= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
-    //        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
-    //    ]) ?>
-
-    <?php ActiveForm::end(); ?>
-
-    <div class="form-group">
-        <?= Html::button('Добавить коллекцию', ['class' => 'btn btn-primary', 'name' => 'add-collection-button']) ?>
-        <?= Html::a('Заблокировать', Url::to(['site/collection', 'id' => 1]), ['class' => 'btn btn-danger', 'name' => 'block-user-button']) ?>
-    </div>
+        <?= Html::a('Заблокировать', Url::to(
+            ['site/collection', 'id' => 1]),
+            ['class' => 'btn btn-danger', 'name' => 'block-user-button']) ?>
+    </h1>
 
     <div class="row">
         <?php
@@ -70,4 +48,9 @@ $this->params['breadcrumbs'][] = $this->title;
         }
         ?>
     </div>
+
+    <div class="form-group">
+        <?= Html::button('Добавить коллекцию', ['class' => 'btn btn-primary', 'name' => 'add-collection-button']) ?>
+    </div>
+
 </div>

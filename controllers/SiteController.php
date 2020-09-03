@@ -125,4 +125,14 @@ class SiteController extends Controller
         }
         return $this->render("collection");
     }
+
+    public function actionSettings($id)
+    {
+        if (!is_null($id)) {
+            $model = User::findOne($id);
+            return $this->render('settings', [
+                'model' => $model,
+            ]);
+        }
+    }
 }
