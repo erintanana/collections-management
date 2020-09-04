@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-outline-primary', 'name' => 'save-button']) ?>
     </h1>
 
-    <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+    <?php $form = ActiveForm::begin(['id' => 'settings-form']); ?>
 
     <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?>
 
@@ -32,9 +32,15 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?= $form->field($model->person, 'date_of_birth') ?>
 
-    <?= $form->field($model, 'site_theme') ?>
+    <?= $form->field($model, 'site_theme')->dropDownList([
+        '0' => 'Темная',
+        '1' => 'Светлая',
+    ]) ?>
 
-    <?= $form->field($model, 'site_language') ?>
+    <?= $form->field($model, 'site_language')->dropDownList([
+        '0' => 'Русский',
+        '1' => 'English',
+    ]) ?>
 
     <!--    --><? //= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
     <!---->
