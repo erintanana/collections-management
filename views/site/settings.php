@@ -19,31 +19,45 @@ $this->params['breadcrumbs'][] = $this->title;
     </h1>
 
     <?php $form = ActiveForm::begin(['id' => 'settings-form']); ?>
+    <div class="form-row">
+        <div class="col-md-3 m-2">
+            <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?>
+        </div>
+        <div class="col-md-3 m-2">
+            <?= $form->field($model, 'email') ?>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-3 m-2">
+            <?= $form->field($model->person, 'name') ?>
+        </div>
+        <div class="col-md-3 m-2">
+            <?= $form->field($model->person, 'surname') ?>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-3 m-2">
+            <?= $form->field($model, 'nickname') ?>
+        </div>
+        <div class="col-md-3 m-2">
+            <?= $form->field($model->person, 'date_of_birth') ?>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-md-3 m-2">
+            <?= $form->field($model, 'site_theme')->dropDownList([
+                '0' => 'Темная',
+                '1' => 'Светлая',
+            ]) ?>
+        </div>
+        <div class="col-md-3 m-2">
+            <?= $form->field($model, 'site_language')->dropDownList([
+                '0' => 'Русский',
+                '1' => 'English',
+            ]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'login')->textInput(['autofocus' => true]) ?>
-
-    <?= $form->field($model, 'email') ?>
-
-    <?= $form->field($model, 'nickname') ?>
-
-    <?= $form->field($model->person, 'name') ?>
-
-    <?= $form->field($model->person, 'surname') ?>
-
-    <?= $form->field($model->person, 'date_of_birth') ?>
-
-    <?= $form->field($model, 'site_theme')->dropDownList([
-        '0' => 'Темная',
-        '1' => 'Светлая',
-    ]) ?>
-
-    <?= $form->field($model, 'site_language')->dropDownList([
-        '0' => 'Русский',
-        '1' => 'English',
-    ]) ?>
-
-    <!--    --><? //= $form->field($model, 'body')->textarea(['rows' => 6]) ?>
-    <!---->
     <!--    --><? //= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
     //        'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',
     //    ]) ?>
