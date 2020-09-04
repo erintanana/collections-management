@@ -10,7 +10,7 @@ use yii\grid\GridView;
 $this->title = 'Коллекция';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
+<div class="content">
     <?
     if (count($model)) {
         foreach ($model as $item) {

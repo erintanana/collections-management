@@ -11,7 +11,7 @@ use \app\models\User;
 $this->title = 'Панель администратора';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
+<div class="content">
     <?php
     $users = User::find()->with('person')->all();
     echo "<table class='table table-striped'>

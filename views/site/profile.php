@@ -11,7 +11,7 @@ use yii\helpers\Url;
 $this->title = 'Профиль';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
+<div class="content">
     <h1>
         <?= Html::encode($model->login) ?>
 

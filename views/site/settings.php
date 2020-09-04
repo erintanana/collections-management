@@ -12,7 +12,7 @@ use yii\bootstrap4\ActiveForm;
 $this->title = 'Профиль';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
+<div class="content">
     <h1>
         <?= Html::encode($model->login) ?>
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-outline-primary', 'name' => 'save-button']) ?>
