@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\Collection;
 use app\models\Item;
+use app\models\Person;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -128,11 +129,14 @@ class SiteController extends Controller
 
     public function actionSettings($id)
     {
-        if (!is_null($id)) {
-            $model = User::findOne($id);
-            return $this->render('settings', [
-                'model' => $model,
-            ]);
+        $model = User::findOne($id);
+        $person = Person::findOne($model->getId());
+        if ($model->load(Yii::$app->request->post()) && $person->load(Yii::$app->request->post())) {
+            $model->save(false);
+            $person->save(false);
+            return $this->refresh();
+        } else {
+            return $this->render('settings', ['model' => $model]);
         }
     }
 }

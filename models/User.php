@@ -7,6 +7,17 @@ use yii\web\IdentityInterface;
 
 class User extends ActiveRecord implements IdentityInterface
 {
+    public function rules()
+    {
+        return [
+            ['login', 'required'],
+            ['email', 'required'],
+            ['nickname', 'required'],
+            ['site_theme', 'required'],
+            ['site_language', 'required'],
+        ];
+    }
+
     public function getperson()
     {
         return $this->hasOne(Person::className(), ['id' => 'person_id']);
