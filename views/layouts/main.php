@@ -39,8 +39,12 @@ AppAsset::register($this);
             ],
         ]);
         ?>
-        <div class="justify-content-between ml-auto">
+        <div class="row justify-content-between ml-auto">
             <?php
+            echo '<form class="form-inline my-2 my-lg-0">
+                    <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="Поиск" aria-label="Search">
+                    <button class="btn btn-sm btn-outline-success my-2 my-sm-0" type="submit">&succ;</button>
+                </form>';
             echo Nav::widget([
                 'options' => ['class' => 'navbar-nav'],
                 'items' => [
@@ -60,6 +64,7 @@ AppAsset::register($this);
                         )
                 ],
             ]);
+
             ?>
         </div>
         <?php
@@ -74,6 +79,8 @@ AppAsset::register($this);
         <?= Alert::widget() ?>
         <?= $content ?>
     </div>
+
+
 </div>
 
 <?php $this->endBody() ?>
