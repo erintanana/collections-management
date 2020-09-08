@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Collection;
 use app\models\Item;
 use app\models\Person;
+use app\models\Tag;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -138,5 +139,12 @@ class SiteController extends Controller
         } else {
             return $this->render('settings', ['model' => $model]);
         }
+    }
+
+    public function actionSearch($id)
+    {
+        $tag = Tag::findOne($id);
+        $items = $tag->getitems()->all();
+        return $this->render('search', ['model' => $items]);
     }
 }

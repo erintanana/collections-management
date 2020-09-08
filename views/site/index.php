@@ -60,7 +60,11 @@ $this->title = 'Collections Management';
     $tags = Tag::find()->all();
     echo "<div class='col-md'>";
     foreach ($tags as $tag) {
-        echo "<div class='d-inline-block mr-3'><button class='btn btn-outline-success btn-sm'>$tag->title</button></div>";
+        echo "<div class='d-inline-block mr-3'>";
+        ?>
+        <?= Html::a($tag->title, Url::to(['site/search', 'id' => $tag->id]), ['data-method' => 'POST', 'class' => 'btn btn-outline-success btn-sm']); ?>
+        <?php
+        echo "</div>";
     }
     echo "</div>"
     ?>
@@ -74,11 +78,12 @@ $this->title = 'Collections Management';
 
 <div class="row">
     <?php
-    $collections = Collection::findBySql("SELECT collection.title, COUNT(item.collection_id) as count FROM `collection`
-RIGHT JOIN `item` on item.collection_id = collection.id
-GROUP BY collection.title
-ORDER BY count desc
-LIMIT 3")->all();
+    $collections = Collection::findBySql(
+        "SELECT collection.*, COUNT(item.collection_id) as count FROM `collection`
+                RIGHT JOIN `item` on item.collection_id = collection.id
+                GROUP BY collection.title
+                ORDER BY count desc
+                LIMIT 3")->all();
     foreach ($collections as $collection) {
         echo "<div class='col-md'>
                         <div class='card'>";
@@ -101,7 +106,6 @@ LIMIT 3")->all();
                      </div>";
         echo "</div>
                         </div>";
-        //var_dump($collection);
     }
     ?>
 </div>
