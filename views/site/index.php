@@ -5,12 +5,13 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 use \app\models\Collection;
+use \app\models\Tag;
 
 $this->title = 'Collections Management';
 ?>
 
 <div class="row">
-    <div class="col-md-3">
+    <div class="col-md">
         <h3>Недавние</h3>
     </div>
 </div>
@@ -45,6 +46,23 @@ $this->title = 'Collections Management';
         echo "</div>
                         </div>";
     }
+    ?>
+</div>
+
+<div class="row">
+    <div class="col-md">
+        <h3>Популярные теги</h3>
+    </div>
+</div>
+
+<div class="row">
+    <?php
+    $tags = Tag::find()->all();
+    echo "<div class='col-md'>";
+    foreach ($tags as $tag) {
+        echo "<div class='d-inline-block mr-3'><button class='btn btn-outline-success btn-sm'>$tag->title</button></div>";
+    }
+    echo "</div>"
     ?>
 </div>
 
