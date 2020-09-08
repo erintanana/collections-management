@@ -49,7 +49,7 @@ $this->title = 'Collections Management';
     ?>
 </div>
 
-<div class="row">
+<div class="row mt-5">
     <div class="col-md">
         <h3>Популярные теги</h3>
     </div>
@@ -65,4 +65,46 @@ $this->title = 'Collections Management';
     echo "</div>"
     ?>
 </div>
+
+<div class="row mt-5">
+    <div class="col-md">
+        <h3>Топ-3 коллекций</h3>
+    </div>
+</div>
+
+<div class="row">
+    <?php
+    $collections = Collection::findBySql("SELECT collection.title, COUNT(item.collection_id) as count FROM `collection`
+RIGHT JOIN `item` on item.collection_id = collection.id
+GROUP BY collection.title
+ORDER BY count desc
+LIMIT 3")->all();
+    foreach ($collections as $collection) {
+        echo "<div class='col-md'>
+                        <div class='card'>";
+        echo "<h5 class='card-header text-center'>";
+        ?>
+        <?= Html::a($collection->title, Url::to(['site/collection', 'id' => $collection->id]), ['data-method' => 'POST']); ?>
+        <?php
+        echo "</h5>" .
+            "<div class='card-body'>" .
+            "<h6 class='card-title'>Тема: {$collection->topic}</h6>" .
+            "<p class='card-text'> $collection->description </p>" .
+            "<h6>Автор:";
+        ?>
+        <?= Html::a($collection->user->login, Url::to(['site/profile', 'id' => $collection->user->id]), ['data-method' => 'POST']); ?>
+        <?php
+        echo "</h6>" .
+            "</div>";
+        echo "<div class='card-footer justify-content-between'>
+                        <p class='text-right'>{$collection->created}</p>
+                     </div>";
+        echo "</div>
+                        </div>";
+        //var_dump($collection);
+    }
+    ?>
+</div>
+
+
 
