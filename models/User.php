@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
@@ -46,6 +47,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    public static function isBlocked($user){
+        return $user->is_blocked;
     }
 
     public function getAuthKey()

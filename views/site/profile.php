@@ -22,8 +22,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['data-method' => 'POST', 'class' => 'btn btn-outline-primary']); ?>
         <?php endif; ?>
 
-        <?= Html::a('Заблокировать', Url::to(
-            ['site/collection', 'id' => 1]),
+        <?= Html::a($model->is_blocked ? 'Разблокировать' : 'Заблокировать', Url::to(
+            ['site/block', 'id' => $model->id]),
             ['class' => 'btn btn-danger', 'name' => 'block-user-button']) ?>
     </h1>
 
@@ -73,10 +73,31 @@ $this->params['breadcrumbs'][] = $this->title;
                     </button>
                 </div>
                 <div class="modal-body">
+                    <form method="POST">
+                        <div class="row">
+                            <div class="col-md">
+                                <label>Название:</label>
+                                <input class="form-control form-control-sm" type="text" name="title">
+                            </div>
+                        </div>
 
+                        <div class="row">
+                            <div class="col-md">
+                                <label>Тема:</label>
+                                <input class="form-control form-control-sm" type="text" name="theme">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md">
+                                <label>Описание:</label>
+                                <textarea class="form-control form-control-sm" name="description" rows="6"></textarea>
+                            </div>
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-success">Добавить</button>
+                    <button type="submit" class="btn btn-success">Добавить</button>
                 </div>
             </div>
         </div>

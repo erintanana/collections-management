@@ -12,7 +12,11 @@ use app\models\Item;
 $this->title = 'Результаты поиска';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
+<div class="row">
+    <div class="col-md">
+        <h3>Результаты поиска</h3>
+    </div>
+</div>
 <?php
 foreach ($model as $item) {
     $tags = $item->tags;
@@ -28,11 +32,7 @@ foreach ($model as $item) {
         <?= Html::a($tag->title, Url::to(['site/search', 'id' => $tag->id]), ['data-method' => 'POST', 'class' => 'btn btn-outline-success btn-sm']); ?>
         <?php
     }
-    echo "</div>
-                    <p class='mb-1'>Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-                    <small>Donec id elit non mi porta.</small>
-                    </div>
-                </div>";
+    echo "</div></div></div>";
 }
 ?>
 
