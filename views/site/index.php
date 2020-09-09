@@ -78,12 +78,12 @@ $this->title = 'Collections Management';
 
 <div class="row">
     <?php
-    $collections = Collection::findBySql(
-        "SELECT collection.*, COUNT(item.collection_id) as count FROM `collection`
-                RIGHT JOIN `item` on item.collection_id = collection.id
-                GROUP BY collection.title
-                ORDER BY count desc
-                LIMIT 3")->all();
+    $collections = Collection::find()
+        ->rightJoin('item', 'item.collection_id = collection.id')
+        ->groupBy('collection.title')
+        ->orderBy('COUNT(item.collection_id) desc')
+        ->limit(3)
+        ->all();
     foreach ($collections as $collection) {
         echo "<div class='col-md'>
                         <div class='card'>";
