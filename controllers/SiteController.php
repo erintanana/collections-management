@@ -156,12 +156,4 @@ class SiteController extends Controller
         return $this->render('search', ['model' => $items]);
     }
 
-    public function actionBlock($id){
-        $user = User::findOne($id);
-        $user->is_blocked = !$user->is_blocked;
-        $user->save();
-        return $this->render('profile', [
-            'model' => $user,
-        ]);
-    }
 }

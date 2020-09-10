@@ -23,4 +23,18 @@ class AdminController extends Controller
         }
     }
 
+    public function actionBlock($id){
+        $user = User::findOne($id);
+        $user->is_blocked = !$user->is_blocked;
+        $user->save();
+        return $this->goBack();
+    }
+
+    public function actionAssign($id){
+        $user = User::findOne($id);
+        $user->role = 'admin';
+        $user->save();
+        return $this->goBack();
+    }
+
 }

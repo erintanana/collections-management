@@ -47,6 +47,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ['data-method' => 'POST',
                 'class' => 'btn btn-sm btn-danger',
                 'name' => 'block-user-button']); ?>
+        <?= Html::a("Заблокировать", Url::to(['admin/block', 'id' => $user->id]),
+            ['data-method' => 'POST',
+                'class' => 'btn btn-sm btn-danger',
+                'name' => 'block-user-button']); ?>
+        <?= Html::a("Назначить админом", Url::to(['admin/assign', 'id' => $user->id]),
+            ['data-method' => 'POST',
+                'class' => 'btn btn-sm btn-danger',
+                'name' => 'block-user-button']); ?>
         <?php
         echo "</td>";
         echo "</tr>";

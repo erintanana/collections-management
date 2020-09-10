@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <?php endif; ?>
 
         <?= Html::a($model->is_blocked ? 'Разблокировать' : 'Заблокировать', Url::to(
-            ['site/block', 'id' => $model->id]),
+            ['admin/block', 'id' => $model->id]),
             ['class' => 'btn btn-danger', 'name' => 'block-user-button']) ?>
     </h1>
 
