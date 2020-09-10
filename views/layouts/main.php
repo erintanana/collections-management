@@ -50,7 +50,10 @@ AppAsset::register($this);
                 'items' => [
                     Yii::$app->user->isGuest ?
                         (
-                        ['label' => 'Войти', 'url' => ['/site/login']]
+                            '' . Html::a("Войти", Url::to(['/site/login']),
+                                ['class' => 'nav-link',]) .
+                            '' . Html::a("Регистрация", Url::to(['/site/signup']),
+                                ['class' => 'nav-link',])
                         ) :
                         (
                             '' . Html::a("Профиль", Url::to(['site/profile', 'id' => Yii::$app->user->id]),

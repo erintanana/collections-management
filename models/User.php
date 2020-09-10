@@ -36,7 +36,7 @@ class User extends ActiveRecord implements IdentityInterface
 
     public function validatePassword($password)
     {
-        return true;
+        return Yii::$app->security->validatePassword($password, $this->password_hash);
     }
 
     public static function findIdentity($id)
@@ -51,6 +51,11 @@ class User extends ActiveRecord implements IdentityInterface
 
     public static function isBlocked($user){
         return $user->is_blocked;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
     }
 
     public function getAuthKey()
