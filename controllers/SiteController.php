@@ -122,7 +122,6 @@ class SiteController extends Controller
 
     public function actionAdmin()
     {
-
         return $this->render('admin');
     }
 
@@ -130,8 +129,7 @@ class SiteController extends Controller
     {
         if (!is_null($id)) {
             $collection = Collection::findOne($id);
-            $items = $collection->getitems()->all();
-            return $this->render("collection", ['model' => $items]);
+            return $this->render("collection", ['model' => $collection]);
         }
         return $this->render("collection");
     }
@@ -139,10 +137,11 @@ class SiteController extends Controller
     public function actionSettings($id)
     {
         $model = User::findOne($id);
-        $person = Person::findOne($model->getId());
+        $person = Person::findOne($model->person_id);
         if ($model->load(Yii::$app->request->post()) && $person->load(Yii::$app->request->post())) {
             $model->save(false);
             $person->save(false);
+            Yii::$app->session->setFlash('success', 'Настройки успешно сохранены.');
             return $this->refresh();
         } else {
             return $this->render('settings', ['model' => $model]);
