@@ -5,6 +5,9 @@
 
 /* @var $model  User */
 
+/* @var $collectionModel  Collection */
+
+use app\models\Collection;
 use app\models\User;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -62,7 +65,8 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 
-    <div class="modal fade" id="add-collection-modal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="add-collection-modal-label"
+    <div class="modal fade" id="add-collection-modal" data-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="add-collection-modal-label"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -73,31 +77,25 @@ $this->params['breadcrumbs'][] = $this->title;
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST">
-                        <div class="row">
-                            <div class="col-md">
-                                <label>Название:</label>
-                                <input class="form-control form-control-sm" type="text" name="title">
-                            </div>
-                        </div>
+                    <?php $form = yii\bootstrap4\ActiveForm::begin([
+                        'id' => 'collection-form',
+                        'layout' => 'horizontal',
+                        'fieldConfig' => [
+                            'template' => "<div class=\"col\">{label}{input}</div>\n<div class=\"col\">{error}</div>",
+                            'labelOptions' => ['class' => 'control-label'],
+                        ],
+                    ]); ?>
 
-                        <div class="row">
-                            <div class="col-md">
-                                <label>Тема:</label>
-                                <input class="form-control form-control-sm" type="text" name="theme">
-                            </div>
-                        </div>
+                    <?= $form->field($collectionModel, 'title')->textInput() ?>
 
-                        <div class="row">
-                            <div class="col-md">
-                                <label>Описание:</label>
-                                <textarea class="form-control form-control-sm" name="description" rows="6"></textarea>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-success">Добавить</button>
+                    <?= $form->field($collectionModel, 'topic')->textInput() ?>
+
+                    <?= $form->field($collectionModel, 'description')->textarea(['rows' => 6]) ?>
+
+                    <div class="modal-footer">
+                        <?= Html::submitButton('Добавить', ['class' => 'btn btn-primary']) ?>
+                    </div>
+                    <?php yii\bootstrap4\ActiveForm::end(); ?>
                 </div>
             </div>
         </div>

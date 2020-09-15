@@ -112,8 +112,14 @@ class SiteController extends Controller
     {
         if (!is_null($id)) {
             $model = User::findOne($id);
+            $collectionModel = new Collection();
+            if ($collectionModel->load(Yii::$app->request->post()) && $collectionModel->newCollection()) {
+                Yii::$app->session->setFlash('success', 'Новая коллекция успешно добавлена.');
+                return $this->refresh();
+            }
             return $this->render('profile', [
                 'model' => $model,
+                'collectionModel' => $collectionModel,
             ]);
         } else {
             return $this->render('profile');
